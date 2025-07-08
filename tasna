@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday TASNA</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .fireworks {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .love-letters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 60px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .love-letters span {
+      width: 50px;
+      height: 50px;
+      background: pink;
+      border-radius: 50%;
+      margin: 4px;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 28px;
+      z-index: 1;
+      position: relative;
+    }
+
+    h2 {
+      font-size: 36px;
+      color: #ff99cc;
+      z-index: 1;
+      position: relative;
+    }
+
+    .cake {
+      margin-top: 30px;
+      animation: float 2s infinite ease-in-out;
+      z-index: 1;
+      position: relative;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .code {
+      background: #1a1a1a;
+      color: #00ff99;
+      padding: 10px;
+      margin: 40px auto;
+      display: inline-block;
+      text-align: left;
+      font-family: monospace;
+      z-index: 1;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ff99;
+    }
+
+    pre {
+      margin: 0;
+    }
+
+    svg {
+      width: 150px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fireworks -->
+  <canvas class="fireworks"></canvas>
+
+  <!-- Balloons MISS YOU -->
+  <div class="love-letters">
+    <span>😊</span>
+    <span>H</span>
+    <span>A</span>
+    <span>P</span>
+    <span>P</span>
+    <span>Y</span>
+    <span>B</span>
+    <span>I</span>
+    <span>R</span>
+    <span>T</span>
+    <span>H</span>
+    <span>D</span>
+    <span>A</span>
+    <span>Y</span>
+     
+    <span>🎈</span>
+  </div>
+
+  <!-- Birthday Text -->
+  <h1>Happy 16<sup>th</sup> Birthday</h1>
+  <h2>TASNA!</h2>
+<h6>23/7/2009=23/7/2025</h6>
+  <!-- Cake SVG -->
+  <div class="cake">
+    <svg viewBox="0 0 64 64">
+      <ellipse cx="32" cy="52" rx="22" ry="6" fill="#4d4d4d" />
+      <path d="M10,20 v28 a22,6 0 0,0 44,0 V20" fill="#ff66cc" />
+      <rect x="30" y="10" width="4" height="10" fill="#ffcc00"/>
+      <polygon points="32,0 30,10 34,10" fill="#ffcc00"/>
+      <circle cx="32" cy="20" r="4" fill="#fff" />
+    </svg>
+  </div>
+
+  <!-- CSS Code Box -->
+  <div class="code">
+    <pre>
+.happy__birthday {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Love You";
+  position: relative;
+  background: #1a1a1a;
+  top: 100px;
+}
+    </pre>
+  </div>
+
+  <!-- Fireworks Script -->
+  <script>
+    const canvas = document.querySelector('.fireworks');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const fireworks = [];
+
+    function randomColor() {
+      const colors = ['#ff007f', '#00ffcc', '#ffcc00', '#ffffff', '#ff6600'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function createFirework() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height / 2;
+      const color = randomColor();
+      fireworks.push({ x, y, radius: 1, maxRadius: 100, color });
+    }
+
+    function drawFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < fireworks.length; i++) {
+        const f = fireworks[i];
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+        ctx.fillStyle = f.color;
+        ctx.fill();
+        f.radius += 2;
+        if (f.radius > f.maxRadius) {
+          fireworks.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+    setInterval(createFirework, 600);
+    function animate() {
+      drawFireworks();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
